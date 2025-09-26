@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>App Screenshot Slider</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f1724;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+
+    header {
+      padding: 16px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #06b6d4;
+      text-align: center;
+    }
+
+    .slider {
+      position: relative;
+      width: 90%;
+      max-width: 400px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      background: #111827;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      text-align: center;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .caption {
+      padding: 8px;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 10;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: #aaa;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: #06b6d4;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Team Name -->
+  <header>Team Phoenix</header>
+
+  <div class="slider">
+    <div class="slides">
+      <div class="slide">
+        <img src="screenshots/1.jpeg" alt="Screenshot 1">
+        <div class="caption">Home Screen</div>
+      </div>
+      <div class="slide">
+        <img src="screenshots/2.jpeg" alt="Screenshot 2">
+        <div class="caption">Login Page</div>
+      </div>
+      <div class="slide">
+        <img src="screenshots/3.jpeg" alt="Screenshot 3">
+        <div class="caption">Dashboard</div>
+      </div>
+      <div class="slide">
+        <img src="screenshots/4.jpeg" alt="Screenshot 4">
+        <div class="caption">Profile</div>
+      </div>
+      <div class="slide">
+        <img src="screenshots/5.jpeg" alt="Screenshot 5">
+        <div class="caption">Settings</div>
+      </div>
+      <div class="slide">
+        <img src="screenshots/6.jpeg" alt="Screenshot 6">
+        <div class="caption">Notifications</div>
+      </div>
+      <div class="slide">
+        <img src="screenshots/7.jpeg" alt="Screenshot 7">
+        <div class="caption">Messages</div>
+      </div>
+      <div class="slide">
+        <img src="screenshots/8.jpeg" alt="Screenshot 8">
+        <div class="caption">Search</div>
+      </div>
+      <div class="slide">
+        <img src="screenshots/9.jpeg" alt="Screenshot 9">
+        <div class="caption">Map View</div>
+      </div>
+      <div class="slide">
+        <img src="screenshots/10.jpeg" alt="Screenshot 10">
+        <div class="caption">About Us</div>
+      </div>
+    </div>
+
+    <button class="nav-btn prev">&#10094;</button>
+    <button class="nav-btn next">&#10095;</button>
+
+    <div class="dots"></div>
+  </div>
+
+  <script>
+    const slides = document.querySelector('.slides');
+    const slideItems = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    const dotsContainer = document.querySelector('.dots');
+
+    let index = 0;
+
+    // Create dots
+    slideItems.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => moveToSlide(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.dot');
+
+    function updateSlide() {
+      slides.style.transform = `translateX(${-index * 100}%)`;
+      dots.forEach(d => d.classList.remove('active'));
+      dots[index].classList.add('active');
+    }
+
+    function moveToSlide(i) {
+      index = i;
+      updateSlide();
+    }
+
+    prevBtn.addEventListener('click', () => {
+      index = (index > 0) ? index - 1 : slideItems.length - 1;
+      updateSlide();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      index = (index < slideItems.length - 1) ? index + 1 : 0;
+      updateSlide();
+    });
+
+    // Auto slide every 4s
+    setInterval(() => {
+      index = (index < slideItems.length - 1) ? index + 1 : 0;
+      updateSlide();
+    }, 40000);
+  </script>
+
+</body>
+</html>
