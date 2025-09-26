@@ -40,23 +40,31 @@
     }
 
     .slide {
-      min-width: 100%;
-      text-align: center;
-    }
+   min-width: 100%;
+   position: relative; /* Make slide a positioning container */
+   }
 
-    .slide img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      object-fit: cover;
-      display: block;
-    }
+   .slide img {
+   width: 100%;
+   height: auto;
+   border-radius: 12px;
+   object-fit: cover;
+   display: block;
+   }
 
-    .caption {
-      padding: 8px;
-      font-size: 14px;
-      color: #ccc;
-    }
+   .caption {
+   position: absolute;
+   top: 20px; /* Keep it above the dots */
+   left: 50%;
+   transform: translateX(-50%);
+   background: rgba(0,0,0,0.6);
+   color: #fff;
+   padding: 6px 12px;
+   border-radius: 6px;
+   font-size: 20px;
+   max-width: 90%;
+   text-align: center;
+   }
 
     .nav-btn {
       position: absolute;
@@ -100,29 +108,29 @@
 <body>
 
   <!-- Team Name -->
-  <header>Team Phoenix</header>
+  <header>Team OptiCore</header>
 
   <div class="slider">
     <div class="slides">
       <div class="slide">
         <img src="screenshots/1.jpeg" alt="Screenshot 1">
-        <div class="caption">Home Screen</div>
+        <div class="caption">Login Screen</div>
       </div>
       <div class="slide">
         <img src="screenshots/2.jpeg" alt="Screenshot 2">
-        <div class="caption">Login Page</div>
+        <div class="caption">Signup Page</div>
       </div>
       <div class="slide">
         <img src="screenshots/3.jpeg" alt="Screenshot 3">
-        <div class="caption">Dashboard</div>
+        <div class="caption">Report Issue Page</div>
       </div>
       <div class="slide">
         <img src="screenshots/4.jpeg" alt="Screenshot 4">
-        <div class="caption">Profile</div>
+        <div class="caption">Dashboard</div>
       </div>
       <div class="slide">
         <img src="screenshots/5.jpeg" alt="Screenshot 5">
-        <div class="caption">Settings</div>
+        <div class="caption">Marketplace Screen</div>
       </div>
       <div class="slide">
         <img src="screenshots/6.jpeg" alt="Screenshot 6">
@@ -130,19 +138,19 @@
       </div>
       <div class="slide">
         <img src="screenshots/7.jpeg" alt="Screenshot 7">
-        <div class="caption">Messages</div>
+        <div class="caption">Nearby Issues</div>
       </div>
       <div class="slide">
         <img src="screenshots/8.jpeg" alt="Screenshot 8">
-        <div class="caption">Search</div>
+        <div class="caption">CivicAI Assistance</div>
       </div>
       <div class="slide">
         <img src="screenshots/9.jpeg" alt="Screenshot 9">
-        <div class="caption">Map View</div>
+        <div class="caption">Sidebar View</div>
       </div>
       <div class="slide">
         <img src="screenshots/10.jpeg" alt="Screenshot 10">
-        <div class="caption">About Us</div>
+        <div class="caption">Order History Page</div>
       </div>
     </div>
 
